@@ -460,7 +460,7 @@ async def aiz(ctx):
 
 @bot.command()
 async def birthday(ctx):
-    target_channel_id = 1371553825118355550  # Replace with your target channel ID where the birthday greeting should go
+    target_channel_id = 1380142475229925466  # Replace with your target channel ID where the birthday greeting should go
     target_channel = bot.get_channel(target_channel_id)
 
     if target_channel is not None:
@@ -488,6 +488,7 @@ async def birthday(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
 
 
 
