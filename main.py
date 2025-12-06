@@ -474,7 +474,7 @@ async def birthday(ctx):
         embed.set_image(url="https://i.pinimg.com/736x/cb/ef/ec/cbefece3d03bd34efe2790deab764a19.jpg")
 
         embed.set_footer(
-            text="🎂 Powered by Lil Bot • Let's celebrate Schyn! 🎉",
+            text="🎂 Powered by Schyn Bot • Let's celebrate Schyn! 🎉",
             icon_url=ctx.guild.icon.url if ctx.guild.icon else discord.Embed.Empty
         )
 
@@ -488,6 +488,7 @@ async def birthday(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
 
 
 
