@@ -485,19 +485,27 @@ async def birthday(ctx):
 
     # Send the message and ping @everyone
     try:
+        # Send the birthday message
         birthday_message = await target_channel.send(content="@everyone", embed=embed)
         await ctx.send("✅ Birthday message has been sent to the designated channel!")
 
-        # Optionally add some reactions to the message
+        # Add some reactions to the message
         await birthday_message.add_reaction("🎉")
         await birthday_message.add_reaction("🎂")
         await birthday_message.add_reaction("🎈")
+    except discord.errors.Forbidden:
+        # If bot doesn't have permission to send messages
+        await ctx.send("❌ I don't have permission to send messages to that channel.")
+    except discord.errors.HTTPException as e:
+        # If there's a problem with the request
+        await ctx.send(f"❌ Something went wrong while sending the message: {e}")
     except Exception as e:
-        await ctx.send(f"❌ Something went wrong: {e}")
-
+        # Catch other errors
+        await ctx.send(f"❌ An unknown error occurred: {e}")
 
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
 
 
 
