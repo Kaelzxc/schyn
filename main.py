@@ -13,16 +13,18 @@ import pytz
 from datetime import datetime
 import asyncio
 
-app = Flask(__name__)
+# ========== FLASK APP FOR RENDER HOSTING ==========
+app = Flask('')
 
 @app.route('/')
 def home():
-    return "Flask is running!"
+    return "Bot is running!"
 
 def run_flask():
-    app.run(host='0.0.0.0', port=5000)  # Binding Flask to port 5000
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
-# Starting the Flask server in a separate thread
+# Start Flask app in a separate thread
 flask_thread = threading.Thread(target=run_flask)
 flask_thread.start()
 
@@ -458,4 +460,5 @@ async def aiz(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
 
