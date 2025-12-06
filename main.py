@@ -460,34 +460,45 @@ async def aiz(ctx):
 
 @bot.command()
 async def birthday(ctx):
-    target_channel_id = 1380142475229925466  # Replace with your target channel ID where the birthday greeting should go
+    # Make sure the target channel ID is correct
+    target_channel_id = 1446831941310742571  # Replace with your target channel ID
     target_channel = bot.get_channel(target_channel_id)
 
-    if target_channel is not None:
-        embed = discord.Embed(
-            title="🎉 **Happy Birthday Schyn!** 🎉",
-            color=discord.Color.from_rgb(255, 87, 34),  # Bright, celebratory orange color
-            timestamp=datetime.datetime.utcnow()
-        )
+    if not target_channel:
+        await ctx.send("❌ Could not find the target birthday channel.")
+        return
 
-        # Add a festive animated gif (replace with your own URL if preferred)
-        embed.set_image(url="https://i.pinimg.com/736x/cb/ef/ec/cbefece3d03bd34efe2790deab764a19.jpg")
+    # Create the embed
+    embed = discord.Embed(
+        title="🎉 **Happy Birthday Schyn!** 🎉",
+        color=discord.Color.from_rgb(255, 87, 34),  # Bright, celebratory orange color
+        timestamp=datetime.datetime.utcnow()
+    )
 
-        embed.set_footer(
-            text="🎂 Powered by Schyn Bot • Let's celebrate Schyn! 🎉",
-            icon_url=ctx.guild.icon.url if ctx.guild.icon else discord.Embed.Empty
-        )
+    # Add an animated gif for the birthday
+    embed.set_image(url="https://i.pinimg.com/736x/cb/ef/ec/cbefece3d03bd34efe2790deab764a19.jpg")
 
-        # Send the message with @everyone ping
-        await target_channel.send(content="@everyone", embed=embed)
+    embed.set_footer(
+        text="🎂 Powered by Lil Bot • Let's celebrate Schyn! 🎉",
+        icon_url=ctx.guild.icon.url if ctx.guild.icon else discord.Embed.Empty
+    )
+
+    # Send the message and ping @everyone
+    try:
+        birthday_message = await target_channel.send(content="@everyone", embed=embed)
         await ctx.send("✅ Birthday message has been sent to the designated channel!")
 
-    else:
-        await ctx.send("❌ Could not find the target birthday channel.")
+        # Optionally add some reactions to the message
+        await birthday_message.add_reaction("🎉")
+        await birthday_message.add_reaction("🎂")
+        await birthday_message.add_reaction("🎈")
+    except Exception as e:
+        await ctx.send(f"❌ Something went wrong: {e}")
 
 
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
 
 
 
