@@ -107,7 +107,7 @@ async def on_ready():
 @tasks.loop(minutes=90)
 async def remind_follow_tiktok():
     # Get the target channel where you want the reminder to be sent
-    target_channel_id = 1380142475229925466  # Replace with your target channel ID
+    target_channel_id = 1322632194698641508  # Replace with your target channel ID
     channel = bot.get_channel(target_channel_id)
 
     if channel:
@@ -168,7 +168,7 @@ async def on_message(message):
 @bot.command()
 async def schyn(ctx, *, status: str = None):
     global schyn_status
-    ALLOWED_USER_ID = 832223350322888746  # Lil's ID
+    ALLOWED_USER_ID = 1168024067362787408  # Lil's ID
 
     if status is None:
         if schyn_status:
@@ -225,7 +225,7 @@ async def lol(ctx):
 @bot.command()
 async def tiktoklive(ctx):
     async with tiktoklive_lock:  # Lock to prevent concurrent execution
-        target_channel_id = 1446831941310742571
+        target_channel_id = 1446841462581886997
         channel = bot.get_channel(target_channel_id)
 
         if channel is not None:
@@ -460,5 +460,6 @@ async def aiz(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
 
 
