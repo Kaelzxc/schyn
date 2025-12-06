@@ -458,8 +458,37 @@ async def vanish(ctx, member: discord.Member = None):
 async def aiz(ctx):
     await ctx.reply(f"soft spoken clove main yan hehe sarap {ctx.author.mention}!")
 
+@bot.command()
+async def birthday(ctx):
+    target_channel_id = 1371553825118355550  # Replace with your target channel ID where the birthday greeting should go
+    target_channel = bot.get_channel(target_channel_id)
+
+    if target_channel is not None:
+        embed = discord.Embed(
+            title="🎉 **Happy Birthday Schyn!** 🎉",
+            color=discord.Color.from_rgb(255, 87, 34),  # Bright, celebratory orange color
+            timestamp=datetime.datetime.utcnow()
+        )
+
+        # Add a festive animated gif (replace with your own URL if preferred)
+        embed.set_image(url="https://i.pinimg.com/736x/cb/ef/ec/cbefece3d03bd34efe2790deab764a19.jpg")
+
+        embed.set_footer(
+            text="🎂 Powered by Lil Bot • Let's celebrate Schyn! 🎉",
+            icon_url=ctx.guild.icon.url if ctx.guild.icon else discord.Embed.Empty
+        )
+
+        # Send the message with @everyone ping
+        await target_channel.send(content="@everyone", embed=embed)
+        await ctx.send("✅ Birthday message has been sent to the designated channel!")
+
+    else:
+        await ctx.send("❌ Could not find the target birthday channel.")
+
+
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
 
 
 
