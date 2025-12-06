@@ -13,6 +13,19 @@ import pytz
 from datetime import datetime
 import asyncio
 
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Flask is running!"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=5000)  # Binding Flask to port 5000
+
+# Starting the Flask server in a separate thread
+flask_thread = threading.Thread(target=run_flask)
+flask_thread.start()
+
 # Create a global lock for the tiktoklive command
 tiktoklive_lock = asyncio.Lock()
 
@@ -445,3 +458,4 @@ async def aiz(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
