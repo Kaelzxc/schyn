@@ -86,6 +86,7 @@ async def fetch_giphy_gif(search_term):
 @bot.event
 async def on_ready():
     print(f"Bot has logged in as {bot.user}")
+    await bot.change_presence(activity=discord.Game(name="Playing with code!"))
     remind_follow_tiktok.start()  # Start the reminder task
 
 @tasks.loop(minutes=90)
@@ -167,6 +168,9 @@ async def schyn(ctx, *, status: str = None):
         schyn_status = status
         save_status(SCHYN_STATUS_FILE, schyn_status)
         await ctx.send(f"✅ Schyn's status has been set to **{status}**!")
+
+        # Dynamically change the bot's status based on the new status
+        await bot.change_presence(activity=discord.Game(name=status))
 
 @bot.command()
 async def tiktok(ctx):
@@ -438,5 +442,6 @@ async def vanish(ctx, member: discord.Member = None):
 @bot.command()
 async def aiz(ctx):
     await ctx.reply(f"soft spoken clove main yan hehe sarap {ctx.author.mention}!")
+
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
