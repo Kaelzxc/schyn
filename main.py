@@ -107,7 +107,7 @@ async def on_ready():
 @tasks.loop(minutes=720)
 async def remind_follow_tiktok():
     # Get the target channel where you want the reminder to be sent
-    target_channel_id = 1322632194698641508  # Replace with your target channel ID
+    target_channel_id = 1326374316568215624  # Replace with your target channel ID
     channel = bot.get_channel(target_channel_id)
 
     if channel:
@@ -505,6 +505,7 @@ async def birthday(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
 
 
 
