@@ -104,7 +104,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name="Playing with code!"))
     remind_follow_tiktok.start()  # Start the reminder task
 
-@tasks.loop(minutes=90)
+@tasks.loop(minutes=720)
 async def remind_follow_tiktok():
     # Get the target channel where you want the reminder to be sent
     target_channel_id = 1322632194698641508  # Replace with your target channel ID
@@ -505,6 +505,7 @@ async def birthday(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.INFO)
+
 
 
 
